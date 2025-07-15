@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server"
+    "dev": "nodemon src/server",
+    "build": "babel src -D -d dist",
+    "start": "node dist/server"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +15,9 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.28.0",
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
     "nodemon": "^3.1.10"
   }
 }

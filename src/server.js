@@ -5,7 +5,7 @@ const PORT = 4000;
 
 app.use(express.json());
 
-app.use('/task', require('./routes/taskRoute'));
+app.use('/api/v1/task', require('./routes/taskRoute'));
 
 app.listen(
     PORT,

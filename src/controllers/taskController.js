@@ -1,4 +1,4 @@
-let tasks = require('../models/tasks.json');
+let tasks = require('../models/tasks');
 
 // @desc Get all Tasks
 // @route GET /task
@@ -33,16 +33,18 @@ const getTask = (req, res) => {
 const createTask = (req, res) => {
 
     try {
-        const { id, title } = req.body;
+        const { id, title, description } = req.body;
 
-        if (!id || !title) {
+        if (!id || !title || !description) {
         return res.status(400).json({ message: 'All fields are required' });
         }
 
         const task = {
             id,
             title,
-            isCompleted: false
+            description,
+            isCompleted: false,
+            createdAt: new Date()
         };
 
         tasks.push(task);
@@ -86,7 +88,7 @@ const deleteTask = (req, res) => {
 
         tasks = tasks.filter(task => task.id !== req.params.id);
 
-        return res.status(200).json({ message: 'Task deleted', tasks });
+        return res.status(200).json({ message: 'Task deleted' });
     } catch (err) {
         return res.status(500).json({ message: 'Failed to delete task', error: err.message });
     }
